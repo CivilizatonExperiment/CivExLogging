@@ -1,0 +1,7 @@
+name: CivExLogging
+main: com.civexperiment.CivExLogging.CivExLogging
+version: 0.1
+description: CivEx's Log everything plugin.
+authors: [Ryan00793]
+depend: [Arcadion, CivChat2]
+commands:
