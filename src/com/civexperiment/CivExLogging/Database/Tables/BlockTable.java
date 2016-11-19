@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 /**
  * Created by Ryan on 11/18/2016.
  */
-public class BlockLogTable implements Table
+public class BlockTable implements Table
 {
     @Override
     public String getName()

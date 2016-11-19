@@ -1,7 +1,7 @@
 package com.civexperiment.CivExLogging;
 
-import com.civexperiment.CivExLogging.Database.Tables.BlockLogTable;
-import com.civexperiment.CivExLogging.Database.Tables.ChatLogTable;
+import com.civexperiment.CivExLogging.Database.Tables.BlockTable;
+import com.civexperiment.CivExLogging.Database.Tables.ChatTable;
 import com.civexperiment.CivExLogging.Database.Tables.Table;
 import com.civexperiment.CivExLogging.Listeners.Chat.ChatLogging;
 import net.arcation.arcadion.interfaces.Arcadion;
@@ -28,8 +28,8 @@ public class CivExLogging extends JavaPlugin
     public void onEnable()
     {
         tableArrayList = new ArrayList<Table>();
-        tableArrayList.add(new ChatLogTable());
-        tableArrayList.add(new BlockLogTable());
+        tableArrayList.add(new ChatTable());
+        tableArrayList.add(new BlockTable());
 
         database = DatabaseManager.getArcadion();
 

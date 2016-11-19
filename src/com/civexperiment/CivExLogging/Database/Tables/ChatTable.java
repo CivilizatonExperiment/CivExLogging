@@ -3,7 +3,7 @@ package com.civexperiment.CivExLogging.Database.Tables;
 /**
  * Created by Ryan on 11/18/2016.
  */
-public class ChatLogTable implements Table
+public class ChatTable implements Table
 {
 
     @Override
