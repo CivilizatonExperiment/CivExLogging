@@ -1,6 +1,9 @@
 package com.civexperiment.CivExLogging;
 
-import com.civexperiment.CivExLogging.Listeners.ChatLogging;
+import com.civexperiment.CivExLogging.Database.Tables.BlockLogTable;
+import com.civexperiment.CivExLogging.Database.Tables.ChatLogTable;
+import com.civexperiment.CivExLogging.Database.Tables.Table;
+import com.civexperiment.CivExLogging.Listeners.Chat.ChatLogging;
 import net.arcation.arcadion.interfaces.Arcadion;
 import net.arcation.arcadion.interfaces.DatabaseManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 /**
@@ -16,11 +20,17 @@ import java.util.logging.Level;
 public class CivExLogging extends JavaPlugin
 {
     public boolean debug = true;
+
+    ArrayList<Table> tableArrayList;
     public Arcadion database;
 
     @Override
     public void onEnable()
     {
+        tableArrayList = new ArrayList<Table>();
+        tableArrayList.add(new ChatLogTable());
+        tableArrayList.add(new BlockLogTable());
+
         database = DatabaseManager.getArcadion();
 
         if (!database.isActive())
@@ -29,7 +39,7 @@ public class CivExLogging extends JavaPlugin
         }
         else
         {
-            createTable();
+            createTables();
         }
 
         regEvents();
@@ -41,21 +51,22 @@ public class CivExLogging extends JavaPlugin
 
     }
 
-    private void createTable()
+    private void createTables()
     {
         try (Connection connection = database.getConnection())
         {
-            String statementString = "CREATE TABLE IF NOT EXISTS tbl_chat_log ("
-                    + "`col_id` int(10) unsigned NOT NULL AUTO_INCREMENT,"
-                    + "`col_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',"
-                    + "`col_channel` varchar(255) NOT NULL,"
-                    + "`col_sender` varchar(16) NOT NULL,"
-                    + "`col_receiver` varchar(16) NOT NULL,"
-                    + "`col_message` varchar(255) NOT NULL,"
-                    + "PRIMARY KEY (`col_id`));";
-            try (PreparedStatement statement = connection.prepareStatement(statementString))
-            {
-                statement.execute();
+            for(Table t : tableArrayList){
+                try (PreparedStatement statement = connection.prepareStatement(t.getStatement()))
+                {
+                    statement.execute();
+                }
+                catch (SQLException ex)
+                {
+                    logConsole(Level.SEVERE, "Creating table [" + t.getName() + "] failed below is the stacktrace for" +
+                            "that statement.");
+                    ex.printStackTrace();
+                    stopServer();
+                }
             }
         }
         catch (SQLException e)

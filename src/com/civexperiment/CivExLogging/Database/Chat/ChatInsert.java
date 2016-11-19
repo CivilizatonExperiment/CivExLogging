@@ -1,4 +1,4 @@
-package com.civexperiment.CivExLogging.Database;
+package com.civexperiment.CivExLogging.Database.Chat;
 
 import net.arcation.arcadion.interfaces.Insertable;
 

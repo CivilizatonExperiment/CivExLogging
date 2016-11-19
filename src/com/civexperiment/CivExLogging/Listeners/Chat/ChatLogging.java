@@ -1,7 +1,7 @@
-package com.civexperiment.CivExLogging.Listeners;
+package com.civexperiment.CivExLogging.Listeners.Chat;
 
 import com.civexperiment.CivExLogging.CivExLogging;
-import com.civexperiment.CivExLogging.Database.ChatInsert;
+import com.civexperiment.CivExLogging.Database.Chat.ChatInsert;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -58,7 +58,7 @@ public class ChatLogging implements Listener
     public void sendToDatabase(String sender, String receiver, String channel, String message, Long time)
     {
         ChatInsert insert = new ChatInsert(sender, receiver, channel, message, time);
-        plugin.database.insert(insert);
+        plugin.database.queueAsyncInsertable(insert);
         plugin.logConsole(Level.INFO, "Inserted into DB");
     }
 
