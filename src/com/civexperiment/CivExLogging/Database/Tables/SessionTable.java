@@ -14,7 +14,7 @@ public class SessionTable implements Table
     @Override
     public String getStatement()
     {
-        return "CREATE TABLE `tbl_session_log` (" +
+        return "CREATE TABLE IF NOT EXISTS `tbl_session_log` (" +
                 "  `col_id` int(11) NOT NULL," +
                 "  `col_player_uuid` varchar(50) NOT NULL," +
                 "  `col_player_name` varchar(32) NOT NULL," +

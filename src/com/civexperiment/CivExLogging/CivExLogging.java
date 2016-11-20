@@ -1,9 +1,8 @@
 package com.civexperiment.CivExLogging;
 
-import com.civexperiment.CivExLogging.Database.Tables.BlockTable;
-import com.civexperiment.CivExLogging.Database.Tables.ChatTable;
-import com.civexperiment.CivExLogging.Database.Tables.Table;
+import com.civexperiment.CivExLogging.Database.Tables.*;
 import com.civexperiment.CivExLogging.Listeners.Chat.ChatLogging;
+import com.civexperiment.CivExLogging.Listeners.Death.DeathLogging;
 import net.arcation.arcadion.interfaces.Arcadion;
 import net.arcation.arcadion.interfaces.DatabaseManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,6 +29,7 @@ public class CivExLogging extends JavaPlugin
         tableArrayList = new ArrayList<Table>();
         tableArrayList.add(new ChatTable());
         tableArrayList.add(new BlockTable());
+        tableArrayList.add(new DeathTable());
 
         database = DatabaseManager.getArcadion();
 
@@ -84,6 +84,7 @@ public class CivExLogging extends JavaPlugin
     private void regEvents()
     {
         getServer().getPluginManager().registerEvents(new ChatLogging(this), this);
+        getServer().getPluginManager().registerEvents(new DeathLogging(this), this);
     }
 
     public void logConsole(Level level, String msg)
