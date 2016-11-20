@@ -33,8 +33,11 @@ public class DeathLogging implements Listener {
         String world = victim.getLocation().getWorld().getName();
         String cause = victim.getLastDamageCause().getCause().toString();
 
+        // If player, get uuid, else get entity type
         String victimName = (victim instanceof Player) ? ((Player) victim).getUniqueId().toString() : event.getEntityType().toString();
-        String victimOwner = (victim instanceof Horse) ? ((Horse) victim).getOwner().getName() : null;
+        
+        // If victim is horse and horse has owner, set owner 
+        String victimOwner = (victim instanceof Horse) ? ( ((Horse) victim).getOwner() != null ? ((Horse) victim).getOwner().getName() : null) : null;
         Double victimX = victim.getLocation().getX();
         Double victimY = victim.getLocation().getY();
         Double victimZ = victim.getLocation().getZ();
@@ -77,7 +80,7 @@ public class DeathLogging implements Listener {
             if (killer != null) {
 
                 killerName = (killer instanceof Player) ? ((Player) killer).getUniqueId().toString() : event.getEntityType().toString();
-                killerOwner = (killer instanceof Horse) ? ((Horse) killer).getOwner().getName() : null;
+                killerOwner = (killer instanceof Horse) ? ( ((Horse) killer).getOwner() != null ? ((Horse) killer).getOwner().getName() : null) : null;
                 killerX = killer.getLocation().getX();
                 killerY = killer.getLocation().getY();
                 killerZ = killer.getLocation().getZ();
