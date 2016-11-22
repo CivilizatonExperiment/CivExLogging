@@ -16,7 +16,7 @@ public class BlockTable implements Table
     @Override
     public String getStatement()
     {
-        return "CREATE TABLE `tbl_block_log` (" +
+        return "CREATE TABLE IF NOT EXISTS `tbl_block_log` (" +
                 "`col_id` int(11) NOT NULL AUTO_INCREMENT," +
                 "`col_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP," +
                 "`col_world` varchar(255) NOT NULL," +
@@ -35,7 +35,7 @@ public class BlockTable implements Table
                 "`col_block_z` int(11) NOT NULL," +
                 "`col_content` varchar(1000) NOT NULL," +
                 "`col_reinforcement_health` varchar(255) NOT NULL," +
-                "PRIMARY KEY (`col_id`)" +
+                "PRIMARY KEY (`col_id`)," +
                 "KEY `col_timestamp` (`col_timestamp`)," +
                 "KEY `col_action` (`col_action`)," +
                 "KEY `col_player` (`col_player`)," +

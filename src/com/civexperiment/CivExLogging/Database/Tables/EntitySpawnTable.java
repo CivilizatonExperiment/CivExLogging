@@ -15,7 +15,7 @@ public class EntitySpawnTable implements Table
     @Override
     public String getStatement()
     {
-        return "CREATE TABLE `tbl_entity_spawn_log` (" +
+        return "CREATE TABLE IF NOT EXISTS `tbl_entity_spawn_log` (" +
                 "  `col_id` int(11) NOT NULL AUTO_INCREMENT," +
                 "  `col_entity_type` varchar(255) NOT NULL," +
                 "  `col_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP," +
