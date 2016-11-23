@@ -22,14 +22,14 @@ public class BlockTable implements Table
                 "`col_world` varchar(255) NOT NULL," +
                 "`col_action` varchar(255) NOT NULL," +
                 "`col_player` varchar(255) NOT NULL," +
-                "`col_item_held_right` int(11) NOT NULL," +
-                "`col_item_held_left` int(11) NOT NULL," +
+                "`col_item_held_right` varchar(255) NOT NULL," +
+                "`col_item_held_left` varchar(255) NOT NULL," +
                 "`col_player_x` double NOT NULL," +
                 "`col_player_y` double NOT NULL," +
                 "`col_player_z` double NOT NULL," +
                 "`col_player_pitch` float NOT NULL," +
                 "`col_player_yaw` float NOT NULL," +
-                "`col_block_id` int(11) NOT NULL," +
+                "`col_block_type` varchar(255) NOT NULL," +
                 "`col_block_x` int(11) NOT NULL," +
                 "`col_block_y` int(11) NOT NULL," +
                 "`col_block_z` int(11) NOT NULL," +

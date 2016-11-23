@@ -1,6 +1,7 @@
 package com.civexperiment.CivExLogging;
 
 import com.civexperiment.CivExLogging.Database.Tables.*;
+import com.civexperiment.CivExLogging.Listeners.Blocks.BlockBreakLogging;
 import com.civexperiment.CivExLogging.Listeners.Chat.ChatLogging;
 import com.civexperiment.CivExLogging.Listeners.Death.DeathLogging;
 import net.arcation.arcadion.interfaces.Arcadion;
@@ -85,6 +86,7 @@ public class CivExLogging extends JavaPlugin
     {
         getServer().getPluginManager().registerEvents(new ChatLogging(this), this);
         getServer().getPluginManager().registerEvents(new DeathLogging(this), this);
+        getServer().getPluginManager().registerEvents(new BlockBreakLogging(this), this);
     }
 
     public void logConsole(Level level, String msg)
