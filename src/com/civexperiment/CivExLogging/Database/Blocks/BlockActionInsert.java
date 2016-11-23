@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 /**
  * Created by Ryan on 11/18/2016.
  */
-public class BlockBreakInsert implements Insertable
+public class BlockActionInsert implements Insertable
 {
 
     Long time;
@@ -18,10 +18,10 @@ public class BlockBreakInsert implements Insertable
     double player_X, player_Y, player_Z;
     float player_yaw, player_pitch;
 
-    public BlockBreakInsert(Long timestamp, String world, String action, String player, String item_main, String item_off,
-                            double player_X, double player_Y, double player_Z, float player_pitch, float player_yaw,
-                            String blockMaterial, int block_X, int block_Y, int block_Z, String content, String reinfHealth,
-                            String group_name){
+    public BlockActionInsert(Long timestamp, String world, String action, String player, String item_main, String item_off,
+                             double player_X, double player_Y, double player_Z, float player_pitch, float player_yaw,
+                             String blockMaterial, int block_X, int block_Y, int block_Z, String content, String reinfHealth,
+                             String group_name){
 
         this.time = timestamp;
         this.world = world;
