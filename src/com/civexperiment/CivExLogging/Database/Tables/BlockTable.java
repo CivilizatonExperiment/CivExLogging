@@ -35,6 +35,7 @@ public class BlockTable implements Table
                 "`col_block_z` int(11) NOT NULL," +
                 "`col_content` varchar(1000) NOT NULL," +
                 "`col_reinforcement_health` varchar(255) NOT NULL," +
+                "`col_group_name` varchar(255) NOT NULL," +
                 "PRIMARY KEY (`col_id`)," +
                 "KEY `col_timestamp` (`col_timestamp`)," +
                 "KEY `col_action` (`col_action`)," +
@@ -45,6 +46,7 @@ public class BlockTable implements Table
                 "KEY `col_world` (`col_world`)," +
                 "KEY `col_item_held_right` (`col_item_held_right`)," +
                 "KEY `col_item_held_left` (`col_item_held_left`)," +
-                "KEY `col_cancelled` (`col_reinforcement_health`));";
+                "KEY `col_cancelled` (`col_reinforcement_health`)," +
+                "KEY `col_group_name` (`col_group_name`));";
     }
 }

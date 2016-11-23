@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import vg.civcraft.mc.citadel.events.ReinforcementDamageEvent;
 import vg.civcraft.mc.citadel.reinforcement.PlayerReinforcement;
 import vg.civcraft.mc.citadel.reinforcementtypes.ReinforcementType;
+import vg.civcraft.mc.namelayer.group.Group;
 
 import java.util.logging.Level;
 
@@ -38,7 +39,7 @@ public class BlockBreakLogging implements Listener
     {
         if (!event.isCancelled()) //This is to not catch citadel stuff
         {
-            sendToDatabase(event.getPlayer(), event.getBlock(), "", "BREAK");
+            sendToDatabase(event.getPlayer(), event.getBlock(), "", "BREAK", "");
         }
     }
 
@@ -48,12 +49,17 @@ public class BlockBreakLogging implements Listener
         if (!event.isCancelled())
         {
             String output = event.getReinforcement().getDurability() + "/";
+            String groupName = "";
+
             if (event.getReinforcement() instanceof PlayerReinforcement)
             {
                 output += ReinforcementType.getReinforcementType(((PlayerReinforcement)event.getReinforcement()).getStackRepresentation()).getHitPoints();
+                PlayerReinforcement pr = (PlayerReinforcement)event.getReinforcement();
+                groupName = pr.getGroup().getName();
             }
 
-            sendToDatabase(event.getPlayer(), event.getBlock(), output, "DAMAGE");
+
+            sendToDatabase(event.getPlayer(), event.getBlock(), output, "DAMAGE", groupName);
         }
     }
 
@@ -90,7 +96,7 @@ public class BlockBreakLogging implements Listener
         return sb.toString();
     }
 
-    void sendToDatabase(Player player, Block block, String reinf, String action)
+    void sendToDatabase(Player player, Block block, String reinf, String action, String groupName)
     {
         String content = "";
 
@@ -105,7 +111,7 @@ public class BlockBreakLogging implements Listener
         BlockBreakInsert temp = new BlockBreakInsert(System.currentTimeMillis(), block.getWorld().getName(), action,
                 player.getUniqueId().toString(), mainHand, offHand, player.getLocation().getX(), player.getLocation().getY(),
                 player.getLocation().getZ(), player.getLocation().getPitch(), player.getLocation().getYaw(), block.getType().toString(),
-                block.getX(), block.getY(), block.getZ(), content, reinf);
+                block.getX(), block.getY(), block.getZ(), content, reinf, groupName);
 
         plugin.database.queueAsyncInsertable(temp);
     }
