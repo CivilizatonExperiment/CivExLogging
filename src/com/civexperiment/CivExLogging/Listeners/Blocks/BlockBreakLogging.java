@@ -48,7 +48,7 @@ public class BlockBreakLogging implements Listener
     {
         if (!event.isCancelled())
         {
-            String output = event.getReinforcement().getDurability() + "/";
+            String output = event.getReinforcement().getDurability() - 1 + "/";
             String groupName = "";
 
             if (event.getReinforcement() instanceof PlayerReinforcement)
