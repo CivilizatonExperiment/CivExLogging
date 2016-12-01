@@ -18,7 +18,7 @@ public class BlockTable implements Table
     {
         return "CREATE TABLE IF NOT EXISTS `tbl_block_log` (" +
                 "`col_id` int(11) NOT NULL AUTO_INCREMENT," +
-                "`col_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP," +
+                "`col_timestamp` timestamp NOT NULL," +
                 "`col_world` varchar(255) NOT NULL," +
                 "`col_action` varchar(255) NOT NULL," +
                 "`col_player` varchar(255) NOT NULL," +
