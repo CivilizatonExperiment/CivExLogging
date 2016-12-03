@@ -1,24 +1,20 @@
 package com.civexperiment.CivExLogging.Listeners.Blocks;
 
 import com.civexperiment.CivExLogging.CivExLogging;
-import com.civexperiment.CivExLogging.Database.Blocks.BlockActionInsert;
-import org.bukkit.Material;
+import com.civexperiment.CivExLogging.Enums.Blocks.Action;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Sign;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import vg.civcraft.mc.citadel.events.ReinforcementDamageEvent;
 import vg.civcraft.mc.citadel.reinforcement.PlayerReinforcement;
-import vg.civcraft.mc.citadel.reinforcementtypes.ReinforcementType;
 
-import java.util.logging.Level;
+import java.util.ArrayList;
 
 /**
  * Created by Ryan on 11/18/2016.
@@ -37,7 +33,26 @@ public class BlockBreakLogging implements Listener
     {
         if (!event.isCancelled()) //This is to not catch citadel stuff
         {
-            plugin.blockUtil.sendToDatabase(event.getPlayer(), "BREAK", event.getBlock(), "", "", "");
+            ArrayList<Block> attachedBlocks = plugin.blockUtil.getAttachedBlocks(event.getBlock());
+            ArrayList<Entity> attachedEntitys = plugin.blockUtil.getAttachedEntitys(event.getBlock());
+
+            if (attachedBlocks.size() > 0)
+            {
+                for (Block b : attachedBlocks)
+                {
+                    plugin.blockUtil.sendToDatabase(event.getPlayer(), Action.BREAK, b, "", "", "");
+                }
+            }
+
+            if (attachedEntitys.size() > 0)
+            {
+                for (Entity e : attachedEntitys)
+                {
+                    plugin.blockUtil.sendToDatabase(event.getPlayer(), Action.BREAK, e, "", "", "");
+                }
+            }
+
+            plugin.blockUtil.sendToDatabase(event.getPlayer(), Action.BREAK, event.getBlock(), "", "", "");
         }
     }
 
@@ -51,15 +66,25 @@ public class BlockBreakLogging implements Listener
 
             if (event.getReinforcement() instanceof PlayerReinforcement)
             {
-                PlayerReinforcement pr = (PlayerReinforcement)event.getReinforcement();
+                PlayerReinforcement pr = (PlayerReinforcement) event.getReinforcement();
                 output = plugin.blockUtil.getReinformentDurabilityString(pr, -1);
                 groupName = pr.getGroup().getName();
             }
 
-            plugin.blockUtil.sendToDatabase(event.getPlayer(), "DAMAGE", event.getBlock(), "", output, groupName);
+            plugin.blockUtil.sendToDatabase(event.getPlayer(), Action.DAMAGE, event.getBlock(), "", output, groupName);
         }
     }
 
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onHangingBreakEvent(HangingBreakByEntityEvent event)
+    {
+        if (event.getRemover() instanceof Player)
+        {
+            Player p = (Player)event.getRemover();
+
+            plugin.blockUtil.sendToDatabase(p, Action.BREAK, event.getEntity(), "", "", "");
+        }
+    }
 
 
 }
