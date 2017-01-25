@@ -19,8 +19,8 @@ public class SessionTable implements Table
                 "  `col_player_uuid` varchar(50) NOT NULL," +
                 "  `col_player_name` varchar(32) NOT NULL," +
                 "  `col_ip` varchar(15) NOT NULL," +
-                "  `col_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP," +
-                "  `col_logout` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP," +
+                "  `col_login` timestamp NOT NULL," +
+                "  `col_logout` timestamp NOT NULL," +
                 "  PRIMARY KEY (`col_id`)," +
                 "  KEY `col_player_uuid` (`col_player_uuid`)," +
                 "  KEY `col_player_name` (`col_player_name`)," +

@@ -17,7 +17,7 @@ public class ChatTable implements Table
     {
         return "CREATE TABLE IF NOT EXISTS tbl_chat_log ("
             + "`col_id` int(10) unsigned NOT NULL AUTO_INCREMENT,"
-            + "`col_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',"
+            + "`col_timestamp` timestamp NOT NULL,"
             + "`col_channel` varchar(255) NOT NULL,"
             + "`col_sender` varchar(16) NOT NULL,"
             + "`col_receiver` varchar(16) NOT NULL,"

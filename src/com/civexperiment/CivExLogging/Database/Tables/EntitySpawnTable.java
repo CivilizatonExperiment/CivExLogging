@@ -18,8 +18,8 @@ public class EntitySpawnTable implements Table
         return "CREATE TABLE IF NOT EXISTS `tbl_entity_spawn_log` (" +
                 "  `col_id` int(11) NOT NULL AUTO_INCREMENT," +
                 "  `col_entity_type` varchar(255) NOT NULL," +
-                "  `col_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP," +
-                "  `col_jockey` tinyint(1) NOT NULL," +
+                "  `col_timestamp` timestamp NOT NULL," +
+                "  `col_jocky` tinyint(1) NOT NULL," +
                 "  `col_x` int(11) NOT NULL," +
                 "  `col_y` int(11) NOT NULL," +
                 "  `col_z` int(11) NOT NULL," +

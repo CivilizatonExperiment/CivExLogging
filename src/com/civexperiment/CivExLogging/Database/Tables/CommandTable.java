@@ -16,7 +16,7 @@ public class CommandTable implements Table
     {
         return "CREATE TABLE IF NOT EXISTS `tbl_command_log` (" +
                 "  `col_id` int(13) NOT NULL AUTO_INCREMENT," +
-                "  `col_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP," +
+                "  `col_timestamp` timestamp NOT NULL," +
                 "  `col_player` varchar(255) NOT NULL," +
                 "  `col_command` varchar(255) NOT NULL," +
                 "  `col_arguments` varchar(255) NOT NULL," +
