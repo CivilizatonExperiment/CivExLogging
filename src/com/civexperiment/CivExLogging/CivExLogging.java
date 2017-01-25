@@ -5,6 +5,7 @@ import com.civexperiment.CivExLogging.Listeners.Blocks.BlockBreakLogging;
 import com.civexperiment.CivExLogging.Listeners.Blocks.BlockPlaceLogging;
 import com.civexperiment.CivExLogging.Listeners.Blocks.BlockUtil;
 import com.civexperiment.CivExLogging.Listeners.Chat.ChatLogging;
+import com.civexperiment.CivExLogging.Listeners.Command.CommandLogging;
 import com.civexperiment.CivExLogging.Listeners.Death.DeathLogging;
 import com.civexperiment.CivExLogging.Listeners.Entity.EntityLogging;
 import net.arcation.arcadion.interfaces.Arcadion;
@@ -37,6 +38,8 @@ public class CivExLogging extends JavaPlugin
         tableArrayList.add(new ChatTable());
         tableArrayList.add(new BlockTable());
         tableArrayList.add(new EntityTable());
+        tableArrayList.add(new DeathTable());
+        tableArrayList.add(new CommandTable());
 
         database = DatabaseManager.getArcadion();
 
@@ -97,6 +100,7 @@ public class CivExLogging extends JavaPlugin
         getServer().getPluginManager().registerEvents(new BlockBreakLogging(this), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceLogging(this), this);
         getServer().getPluginManager().registerEvents(new EntityLogging(this), this);
+        getServer().getPluginManager().registerEvents(new CommandLogging(this), this);
     }
 
     public void logConsole(Level level, String msg)
@@ -112,6 +116,5 @@ public class CivExLogging extends JavaPlugin
                 getLogger().log(level, msg);
             }
         }
-
     }
 }

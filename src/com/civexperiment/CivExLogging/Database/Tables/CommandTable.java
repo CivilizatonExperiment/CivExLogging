@@ -20,12 +20,12 @@ public class CommandTable implements Table
                 "  `col_player` varchar(255) NOT NULL," +
                 "  `col_command` varchar(255) NOT NULL," +
                 "  `col_arguments` varchar(255) NOT NULL," +
-                "  `col_cancelled` tinyint(1) NOT NULL," +
+                "  `col_canceled` tinyint(1) NOT NULL," +
                 "  PRIMARY KEY (`col_id`)," +
                 "  KEY `col_timestamp` (`col_timestamp`)," +
                 "  KEY `col_player` (`col_player`)," +
                 "  KEY `col_command` (`col_command`)," +
                 "  KEY `col_argument` (`col_arguments`)," +
-                "  KEY `col_cancelled` (`col_cancelled`));";
+                "  KEY `col_canceled` (`col_canceled`));";
     }
 }
