@@ -26,6 +26,6 @@ public class EntitySpawnTable implements Table
                 "  PRIMARY KEY (`col_id`)," +
                 "  KEY `col_timestamp` (`col_timestamp`)," +
                 "  KEY `col_entity_type` (`col_entity_type`)," +
-                "  KEY `col_jocky` (`col_jocky`))";
+                "  KEY `col_jockey` (`col_jockey`))";
     }
 }
