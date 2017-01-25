@@ -10,7 +10,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
-import org.bukkit.event.hanging.HangingBreakEvent;
 import vg.civcraft.mc.citadel.events.ReinforcementDamageEvent;
 import vg.civcraft.mc.citadel.reinforcement.PlayerReinforcement;
 
@@ -80,7 +79,7 @@ public class BlockBreakLogging implements Listener
     {
         if (event.getRemover() instanceof Player)
         {
-            Player p = (Player)event.getRemover();
+            Player p = (Player) event.getRemover();
 
             plugin.blockUtil.sendToDatabase(p, Action.BREAK, event.getEntity(), "", "", "");
         }
