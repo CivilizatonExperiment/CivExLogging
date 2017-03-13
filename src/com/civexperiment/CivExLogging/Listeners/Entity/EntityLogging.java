@@ -69,7 +69,7 @@ public class EntityLogging implements Listener {
     @EventHandler
     void onSpawn(EntitySpawnEvent event) {
 
-        if (event.getEntity().getType().equals(EntityType.EXPERIENCE_ORB)) {
+        if (event.getEntity().getType().equals(EntityType.EXPERIENCE_ORB) || event.getEntity().getType().equals(EntityType.DROPPED_ITEM)) {
             return;
         }
 
